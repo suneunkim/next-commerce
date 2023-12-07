@@ -4,22 +4,33 @@ import { IProductList } from "./ProductList";
 
 interface PaginationProps {
   data: IProductList[];
+  onPageChange: any;
+  perPage: number;
 }
 
-const ProductPagination = ({ data }: PaginationProps) => {
-  const perPage = 6;
-  const [activePage, setPage] = useState(1);
+const ProductPagination = ({
+  data,
+  onPageChange,
+  perPage,
+}: PaginationProps) => {
   const [total, setTotal] = useState(data.length);
   const totalPage = Math.ceil(total / perPage);
-
+  const [activePage, setPage] = useState(1);
   useEffect(() => {
     setTotal(data.length);
   }, [data, total]);
 
+  const handlePageChange = (pageNumber: number) => {
+    setPage(pageNumber);
+    onPageChange(pageNumber);
+  };
   return (
-    <div>
-      <Pagination value={activePage} onChange={setPage} total={totalPage} />
-    </div>
+    <Pagination
+      value={activePage}
+      onChange={handlePageChange}
+      total={totalPage}
+      defaultValue={1}
+    />
   );
 };
 
