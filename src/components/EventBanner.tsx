@@ -5,12 +5,14 @@ import Countdown from "./Countdown";
 const EventBanner = () => {
   return (
     <>
-      <div className="relative h-[40rem]">
-        <Image
-          src={`https://pethroom.com/web/event/2023_christmas/origin/main-bg.gif`}
-          alt="event_banner"
-          fill
-        />
+      <div className="pt-[112px]">
+        <div className="relative min-h-[40rem]">
+          <Image
+            src={`https://pethroom.com/web/event/2023_christmas/origin/main-bg.gif`}
+            alt="event_banner"
+            fill
+          />
+        </div>
       </div>
       <div className="flex items-center justify-center w-full h-12 bg-red-700 space-x-3 text-sm border-3 border-t-4 border-b-4 border-yellow-400 shadow-xl">
         <p className="text-white">{`2023.12.04 (MON) - 12.08 (FRI)`}</p>
@@ -29,7 +31,7 @@ const EventBanner = () => {
           <Countdown />
         </div>
       </div>
-      <div className="w-full bg-gray-200 p-16">
+      <div className="w-full bg-gray-200/70 p-16">
         <div className="w-full max-w-5xl ml-40 space-y-3">
           <h2 className="font-semibold text-xl py-2">
             깜짝 쿠폰 찾기 유의 사항

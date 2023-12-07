@@ -3,8 +3,8 @@ import React from "react";
 
 const Nav = () => {
   return (
-    <div className="w-full">
-      <nav className="p-4 h-14 flex justify-between items-center">
+    <div className="w-full fixed z-10 top-0 min-w-[1000px]">
+      <nav className="p-4 h-14 bg-white flex justify-between items-center">
         <div>
           <Image
             src="/logo_pethroom.png"
