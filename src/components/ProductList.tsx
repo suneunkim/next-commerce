@@ -5,6 +5,7 @@ import ProductPagination from "./ProductPagination";
 import SearchModal from "./SearchModal";
 import { useRecoilState } from "recoil";
 import { searchOpenState } from "./Recoil";
+import ProductBox from "./ProductBox";
 
 export interface IProductList {
   id: string;
@@ -83,20 +84,7 @@ const ProductList = () => {
       </div>
       {/* 상품 목록 */}
       <div className="w-[1300px] mx-auto">
-        <div className="flex flex-wrap justify-center">
-          {currentItems.map((p) => (
-            <div className="w-[400px] mb-16 mx-3" key={p.id}>
-              <Image src={p.imageUrl} alt="product" width={390} height={390} />
-              <div className="space-y-2">
-                <h3 className="font-semibold text-lg mt-3">{p.title}</h3>
-                <p className="text-sm text-gray-500">{p.description}</p>
-                <p className="font-semibold text-lg text-gray-600">
-                  {p.price.toLocaleString("ko-KR")}원
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ProductBox currentItems={currentItems} />
       </div>
       {/* 페이지네이션 */}
       <div className="flex justify-center">

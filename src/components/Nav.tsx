@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { useRecoilState } from "recoil";
 import { searchOpenState } from "./Recoil";
+import Link from "next/link";
 
 const Nav = () => {
   const [searchOpen, setSearchOpen] = useRecoilState(searchOpenState);
@@ -9,14 +10,14 @@ const Nav = () => {
   return (
     <div className="w-full fixed z-10 top-0 min-w-[1000px]">
       <nav className="p-4 h-14 bg-white flex justify-between items-center">
-        <div>
+        <Link href="/">
           <Image
             src="/logo_pethroom.png"
             alt="pethroom"
             width={160}
             height={80}
           />
-        </div>
+        </Link>
         <div>
           <ul className="flex space-x-7 text-blue-900 font-semibold">
             <li>login</li>

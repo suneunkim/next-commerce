@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Recommended from "./Recommended";
+import { useRouter } from "next/router";
 interface modalProps {
   setSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const SearchModal = ({ setSearchOpen }: modalProps) => {
+  const [searchValue, setSearchValue] = useState("");
+  const handleChange = (e: any) => {
+    setSearchValue(e.target.value);
+  };
+
+  const router = useRouter();
+
+  const handleSearch = () => {
+    if (searchValue.trim()) {
+      setSearchOpen(false);
+      router.push(`/search?keyword=${encodeURIComponent(searchValue)}`);
+    }
+  };
+
   return (
     <div className="z-20 absolute">
       <div className=" fixed mt-[112px] inset-0">
@@ -17,10 +32,15 @@ const SearchModal = ({ setSearchOpen }: modalProps) => {
             </button>
             <div className=" text-white w-[800px] absolute left-[50%] top-[50%] translate-y-[-50%] translate-x-[-50%]">
               <input
+                value={searchValue}
+                onChange={handleChange}
                 className="w-full bg-transparent border-b-2 border-white
               text-2xl focus:border-transparen outline-0 leading-5 py-2"
               />
-              <span className="absolute right-2 bottom-2">
+              <button
+                onClick={handleSearch}
+                className="absolute right-2 bottom-2"
+              >
                 <svg
                   width="30"
                   height="30"
@@ -35,7 +55,7 @@ const SearchModal = ({ setSearchOpen }: modalProps) => {
                     fill="#f9f9f9"
                   ></path>
                 </svg>
-              </span>
+              </button>
             </div>
             <div className="absolute w-[800px] left-[50%] top-[63%] translate-y-[-50%] translate-x-[-50%]">
               <Recommended />
