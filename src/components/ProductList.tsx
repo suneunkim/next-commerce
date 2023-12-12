@@ -14,6 +14,7 @@ export interface IProductList {
   description: string;
   price: number;
   category: string;
+  tag?: string[];
 }
 
 const ProductList = () => {

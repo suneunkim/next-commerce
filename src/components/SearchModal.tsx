@@ -58,7 +58,7 @@ const SearchModal = ({ setSearchOpen }: modalProps) => {
               </button>
             </div>
             <div className="absolute w-[800px] left-[50%] top-[63%] translate-y-[-50%] translate-x-[-50%]">
-              <Recommended />
+              <Recommended setSearchValue={setSearchValue} />
             </div>
           </div>
         </div>

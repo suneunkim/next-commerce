@@ -1,6 +1,8 @@
 import React from "react";
-import { IProductList } from "./ProductList";
+
 import Image from "next/image";
+import { IProductList } from "./ProductList";
+import TagBox from "./TagBox";
 
 interface ProductBoxProps {
   currentItems: IProductList[];
@@ -10,8 +12,9 @@ const ProductBox = ({ currentItems }: ProductBoxProps) => {
   return (
     <div className="flex flex-wrap justify-center">
       {currentItems.map((p) => (
-        <div className="w-[400px] mb-16 mx-3" key={p.id}>
+        <div className="w-[390px] mb-16 mx-3 relative" key={p.id}>
           <Image src={p.imageUrl} alt="product" width={390} height={390} />
+          <TagBox tags={p.tag!} />
           <div className="space-y-2">
             <h3 className="font-semibold text-lg mt-3">{p.title}</h3>
             <p className="text-sm text-gray-500">{p.description}</p>

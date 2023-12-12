@@ -1,32 +1,31 @@
 import React from "react";
 
-const Recommended = () => {
+interface recommendedProps {
+  setSearchValue: (r: string) => void;
+}
+
+const Recommended = ({ setSearchValue }: recommendedProps) => {
+  const recommendedSearch = [
+    "스마일 패드",
+    "벤토나이트",
+    "브러쉬",
+    "릴렉싱 라이트",
+    "위글위글",
+    "노즈워크",
+    "팝업토이",
+    "테이블",
+    "하하",
+  ];
   return (
     <ul className="flex flex-wrap">
-      <li className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer">
-        스마일 패드
-      </li>
-      <li className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer">
-        벤토나이트
-      </li>
-      <li className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer">
-        브러쉬
-      </li>
-      <li className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer">
-        릴렉싱 라이트
-      </li>
-      <li className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer">
-        위글위글
-      </li>
-      <li className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer">
-        노즈워크
-      </li>
-      <li className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer">
-        팝업토이
-      </li>
-      <li className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer">
-        테이블
-      </li>
+      {recommendedSearch.map((recommend) => (
+        <li
+          onClick={() => setSearchValue(recommend)}
+          className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer"
+        >
+          {recommend}
+        </li>
+      ))}
     </ul>
   );
 };

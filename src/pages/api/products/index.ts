@@ -10,6 +10,7 @@ export const products = [
     description: "먼지 최소화 & 단단 응고력 & 사막화 방지를 원한다면",
     price: 29000,
     category: "위생",
+    tag: ["new", "best"],
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const products = [
       "초강력 흡수체 최다 함유한 프리미엄 배변패드, 소형(50매) 대형(20매)",
     price: 21000,
     category: "위생",
+    tag: ["new", "best"],
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ export const products = [
       "천연 카사바와 최고급 벤토나이트를 블렌딩한 완벽한 고양이 모래",
     price: 32000,
     category: "위생",
+    tag: ["new", "best"],
   },
   {
     id: 4,
@@ -39,6 +42,7 @@ export const products = [
     description: "눈곱 제거부터 빗질까지 둥근 헤드로 안전하게",
     price: 10000,
     category: "미용",
+    tag: ["best", "개별배송"],
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ export const products = [
     description: "306개의 폴리케톤 빗살로 피부 자극 없이 편안하게",
     price: 30000,
     category: "미용",
+    tag: ["개별배송"],
   },
   {
     id: 6,
@@ -57,6 +62,7 @@ export const products = [
     description: "무자극 실리콘 돌기로 죽은 털 제거와 마사지를 한번에",
     price: 24000,
     category: "미용",
+    tag: ["new", "자체개발"],
   },
   {
     id: 7,
@@ -103,6 +109,7 @@ export const products = [
     description: "급하게 먹는 아이들을 위한 급체방지식기",
     price: 15900,
     category: "리빙",
+    tag: ["new", "자체개발", "위글위글협업"],
   },
   {
     id: 12,
@@ -121,6 +128,7 @@ export const products = [
     description: "고양이에겐 살랑, 집사에겐 말랑한 사냥 놀이 시간!",
     price: 26500,
     category: "놀이",
+    tag: ["new", "자체개발"],
   },
   {
     id: 14,
