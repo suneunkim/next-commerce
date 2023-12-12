@@ -1,6 +1,11 @@
 // recoil.js
 import { atom, selector } from "recoil";
 
+export const searchOpenState = atom({
+  key: "searchOpenState",
+  default: false,
+});
+
 const startDate = new Date("2023-12-08T09:00:00.000Z");
 const endDate = new Date(startDate.getTime() + 14 * 24 * 60 * 60 * 1000);
 // 이벤트의 시작 시간과 종료 시간을 관리하는 원자
@@ -18,11 +23,11 @@ export const eventEndTimeAtom = atom({
 // 현재 시간을 기반으로 남은 시간을 계산하는 선택자
 export const remainingTimeSelector = selector({
   key: "remainingTime",
-  get: async ({ get }) => {
+  get: ({ get }) => {
     const endTime = get(eventEndTimeAtom);
-    const currentTime = await get(getServerTime);
+    const currentTime = get(getServerTime);
 
-    let timeDiff = endTime - currentTime;
+    let timeDiff = endTime.getTime() - currentTime.getTime();
 
     if (timeDiff < 0) {
       timeDiff = 0;

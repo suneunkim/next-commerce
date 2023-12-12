@@ -1,7 +1,10 @@
 import axios from "axios";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ProductPagination from "./ProductPagination";
+import SearchModal from "./SearchModal";
+import { useRecoilState } from "recoil";
+import { searchOpenState } from "./Recoil";
 
 export interface IProductList {
   id: string;
@@ -16,6 +19,7 @@ const ProductList = () => {
   const [products, setProducts] = useState<IProductList[]>([]);
   const categories = ["전체상품", "위생", "미용", "간식", "리빙", "놀이"];
   const [selectedCategory, setSelectedCategory] = useState("전체상품");
+  const [searchOpen, setSearchOpen] = useRecoilState(searchOpenState);
 
   const perPage = 6;
   const [activePage, setActivePage] = useState(1);
@@ -39,6 +43,7 @@ const ProductList = () => {
 
   const handlePageChange = (pageNumber: number) => {
     setActivePage(pageNumber);
+    scrollToCategory();
   };
 
   const filteredProducts =
@@ -52,8 +57,15 @@ const ProductList = () => {
     activePage * perPage
   );
 
+  const categoryRef = useRef<null | HTMLDivElement>(null);
+  const scrollToCategory = () => {
+    categoryRef?.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="w-[1300px] mx-auto">
+    <div ref={categoryRef} className="w-[1300px] mx-auto">
       {/* 카테고리 */}
       <div className="flex justify-center p-10 space-x-10 font-semibold text-gray-400">
         {categories.map((category) => (
@@ -94,6 +106,7 @@ const ProductList = () => {
           perPage={perPage}
         />
       </div>
+      {searchOpen && <SearchModal setSearchOpen={setSearchOpen} />}
     </div>
   );
 };

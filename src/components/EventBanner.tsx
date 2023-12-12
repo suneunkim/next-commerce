@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Countdown from "./Countdown";
+import Countdown2 from "./Countdown2";
 
 const EventBanner = () => {
   return (

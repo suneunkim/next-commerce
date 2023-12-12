@@ -6,3 +6,10 @@
   /* 각 페이지 버튼에 적용되는 스타일 */
   margin-right: 20px;
 }
+
+#search_background {
+  background: rgba(0, 0, 0, 0.5)
+    url("https://pethroom.com/web/upload/images/bg_search.png") no-repeat 50%
+    50%;
+  background-size: cover;
+}

@@ -1,7 +1,11 @@
 import Image from "next/image";
 import React from "react";
+import { useRecoilState } from "recoil";
+import { searchOpenState } from "./Recoil";
 
 const Nav = () => {
+  const [searchOpen, setSearchOpen] = useRecoilState(searchOpenState);
+
   return (
     <div className="w-full fixed z-10 top-0 min-w-[1000px]">
       <nav className="p-4 h-14 bg-white flex justify-between items-center">
@@ -17,9 +21,11 @@ const Nav = () => {
           <ul className="flex space-x-7 text-blue-900 font-semibold">
             <li>login</li>
             <li>join</li>
-            <li>cart</li>
+            <li className="cursor-pointer">cart</li>
             <li className="text-orange-600">membership</li>
-            <li>search</li>
+            <li className="cursor-pointer" onClick={() => setSearchOpen(true)}>
+              search
+            </li>
           </ul>
         </div>
       </nav>

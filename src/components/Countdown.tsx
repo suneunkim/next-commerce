@@ -32,7 +32,7 @@ const Countdown = () => {
         </div>
       );
     case "loading":
-      return <div>Loading...</div>;
+      return;
     case "hasError":
       return <div>Error: {loadable.contents.message}</div>;
     default:

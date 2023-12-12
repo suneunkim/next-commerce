@@ -8,13 +8,13 @@ import { RecoilRoot } from "recoil";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Nav />
       <RecoilRoot>
+        <Nav />
         <MantineProvider>
           <Component {...pageProps} />
         </MantineProvider>
+        <Footer />
       </RecoilRoot>
-      <Footer />
     </>
   );
 }
