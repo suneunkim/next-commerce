@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export function useInterval(callback: any, delay: any) {
   // useRef를 생성할 때 current 속성에 초기 값으로 null을 할당
@@ -20,3 +20,5 @@ export function useInterval(callback: any, delay: any) {
     }
   }, [delay]);
 }
+
+// 출처: https://class.codejong.kr/t/react/371/3

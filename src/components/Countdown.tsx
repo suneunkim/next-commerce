@@ -1,43 +1,52 @@
 import { useRecoilValueLoadable } from "recoil";
 import { remainingTimeSelector } from "./Recoil";
+import { useInterval } from "@/hooks/useInterval";
+import { useCalculator } from "@/hooks/\buseCalculator";
 
 const Countdown = () => {
-  // 비동기 데이터 로드할 때
-  const loadable = useRecoilValueLoadable(remainingTimeSelector);
+  const targetDate = new Date("2023-12-31T00:00:00.000");
+  const currentDateTime = new Date();
 
-  switch (loadable.state) {
-    case "hasValue":
-      const remainingTime = loadable.contents;
-      return (
-        <div className="flex justify-center items-center text-yellow-950">
-          <div className="flex flex-col justify-center items-center space-y-2">
-            <div className="text-7xl font-bold">{remainingTime.days}</div>
-            <div className="text-base font-semibold">DAYS</div>
-          </div>
-          <div className="text-6xl px-8 h-24 my-auto">:</div>
-          <div className="flex flex-col justify-center items-center space-y-2">
-            <div className="text-7xl font-bold">{remainingTime.hours}</div>
-            <div className="text-base font-semibold">HOURS</div>
-          </div>
-          <div className="text-6xl px-8 h-24 my-auto">:</div>
-          <div className="flex flex-col justify-center items-center space-y-2">
-            <div className="text-7xl font-bold">{remainingTime.minutes}</div>
-            <div className="text-base font-semibold">MINUTES</div>
-          </div>
-          <div className="text-6xl px-8 h-24 my-auto">:</div>
-          <div className="flex flex-col justify-center items-center space-y-2">
-            <div className="text-7xl font-bold">{remainingTime.seconds}</div>
-            <div className="text-base font-semibold">SECONDS</div>
-          </div>
-        </div>
-      );
-    case "loading":
-      return;
-    case "hasError":
-      return <div>Error: {loadable.contents.message}</div>;
-    default:
-      return null;
-  }
+  const remain = useCalculator(
+    () => Math.floor((targetDate.getTime() - currentDateTime.getTime()) / 1000),
+    1000
+  );
+
+  const days = Math.floor(remain / (24 * 60 * 60));
+  const hours = Math.floor((remain % (24 * 60 * 60)) / (60 * 60));
+  const minutes = Math.floor((remain % (60 * 60)) / 60);
+  const seconds = Math.floor(remain % 60);
+
+  const formatTime = (time: number) => {
+    return time < 10 ? `0${time}` : time;
+  };
+
+  return (
+    <div
+      suppressHydrationWarning={true}
+      className="flex justify-center items-center text-yellow-950"
+    >
+      <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
+        <div className="text-7xl font-bold">{days}</div>
+        <div className="text-base font-semibold">DAYS</div>
+      </div>
+      <div className="text-6xl px-8 h-24 my-auto">:</div>
+      <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
+        <div className="text-7xl font-bold">{hours}</div>
+        <div className="text-base font-semibold">HOURS</div>
+      </div>
+      <div className="text-6xl px-8 h-24 my-auto">:</div>
+      <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
+        <div className="text-7xl font-bold">{minutes}</div>
+        <div className="text-base font-semibold">MINUTES</div>
+      </div>
+      <div className="text-6xl px-8 h-24 my-auto">:</div>
+      <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
+        <div className="text-7xl font-bold">{formatTime(seconds)}</div>
+        <div className="text-base font-semibold">SECONDS</div>
+      </div>
+    </div>
+  );
 };
 
 export default Countdown;
