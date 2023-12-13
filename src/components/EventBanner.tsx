@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import Countdown from "./Countdown";
-import Countdown2 from "./Countdown2";
 
 const EventBanner = () => {
   return (
@@ -16,8 +15,8 @@ const EventBanner = () => {
         </div>
       </div>
       <div className="flex items-center justify-center w-full h-12 bg-red-700 space-x-3 text-sm border-3 border-t-4 border-b-4 border-yellow-400 shadow-xl">
-        <p className="text-white">{`2023.12.04 (MON) - 12.08 (FRI)`}</p>
-        <p className="text-yellow-300">단, 5일간</p>
+        <p className="text-white">{`2023.12.04 (MON) - 12.31 (SUN)`}</p>
+        <p className="text-yellow-300">올해의 마지막 직전까지!</p>
       </div>
       <div className="relative h-[40rem] bg-orange-100 flex flex-col items-center justify-center">
         <div>
@@ -28,7 +27,7 @@ const EventBanner = () => {
             height={500}
           />
         </div>
-        <div className="h-full">
+        <div suppressHydrationWarning className="h-full">
           <Countdown />
         </div>
       </div>

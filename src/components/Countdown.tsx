@@ -1,6 +1,3 @@
-import { useRecoilValueLoadable } from "recoil";
-import { remainingTimeSelector } from "./Recoil";
-import { useInterval } from "@/hooks/useInterval";
 import { useCalculator } from "@/hooks/\buseCalculator";
 
 const Countdown = () => {
@@ -22,30 +19,46 @@ const Countdown = () => {
   };
 
   return (
-    <div
-      suppressHydrationWarning={true}
-      className="flex justify-center items-center text-yellow-950"
-    >
-      <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
-        <div className="text-7xl font-bold">{days}</div>
-        <div className="text-base font-semibold">DAYS</div>
-      </div>
-      <div className="text-6xl px-8 h-24 my-auto">:</div>
-      <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
-        <div className="text-7xl font-bold">{hours}</div>
-        <div className="text-base font-semibold">HOURS</div>
-      </div>
-      <div className="text-6xl px-8 h-24 my-auto">:</div>
-      <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
-        <div className="text-7xl font-bold">{minutes}</div>
-        <div className="text-base font-semibold">MINUTES</div>
-      </div>
-      <div className="text-6xl px-8 h-24 my-auto">:</div>
-      <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
-        <div className="text-7xl font-bold">{formatTime(seconds)}</div>
-        <div className="text-base font-semibold">SECONDS</div>
-      </div>
-    </div>
+    <>
+      {remain < 0 ? (
+        <div className="font-semibold text-lg p-10">
+          이벤트가 종료되었습니다.
+        </div>
+      ) : (
+        <div
+          suppressHydrationWarning={true}
+          className="flex justify-center items-center text-yellow-950"
+        >
+          <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
+            <div suppressHydrationWarning className="text-7xl font-bold">
+              {days}
+            </div>
+            <div className="text-base font-semibold">DAYS</div>
+          </div>
+          <div className="text-6xl px-8 h-24 my-auto">:</div>
+          <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
+            <div suppressHydrationWarning className="text-7xl font-bold">
+              {formatTime(hours)}
+            </div>
+            <div className="text-base font-semibold">HOURS</div>
+          </div>
+          <div className="text-6xl px-8 h-24 my-auto">:</div>
+          <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
+            <div suppressHydrationWarning className="text-7xl font-bold">
+              {formatTime(minutes)}
+            </div>
+            <div className="text-base font-semibold">MINUTES</div>
+          </div>
+          <div className="text-6xl px-8 h-24 my-auto">:</div>
+          <div className="flex flex-col justify-center items-center space-y-2 whitespace-nowrap w-24">
+            <div suppressHydrationWarning className="text-7xl font-bold">
+              {formatTime(seconds)}
+            </div>
+            <div className="text-base font-semibold">SECONDS</div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
