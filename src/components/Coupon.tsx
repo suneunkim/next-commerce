@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 const Coupon = () => {
+  const [loading, setLoading] = useState(true);
   const [hidden, setHidden] = useState(false);
 
   const handleClick = () => {
@@ -12,24 +13,28 @@ const Coupon = () => {
   const controls = useAnimation();
 
   const animateCoupon = async () => {
+    setLoading(false);
     // 1시간에 5초 동안 나타나고 사라지는 효과
-    await controls.start({ opacity: 1 });
+    if (!loading) {
+      await controls.start({ opacity: 1 });
 
-    // 불규칙한 위치로 이동하는 애니메이션 추가
-    await controls.start({
-      x: [0, 500, -500, -600, 400, 0],
-      y: [0, 800, 1300, -500, 200, 0],
-      transition: { duration: 20, ease: "linear" },
-    });
-    await controls.start({ opacity: 0 });
-    setHidden(true);
+      // 불규칙한 위치로 이동하는 애니메이션 추가
+      await controls.start({
+        x: [0, 500, -500, -600, 400, 0],
+        y: [0, 800, 1300, -500, 200, 0],
+        transition: { duration: 20, ease: "linear" },
+      });
+      await controls.start({ opacity: 0 });
+      setHidden(true);
+      setLoading(true);
+    }
   };
 
   useEffect(() => {
     animateCoupon();
     // const intervalId = setInterval(animateCoupon, 300000);
     // return () => clearInterval(intervalId);
-  }, []);
+  }, [controls]);
 
   return (
     <>

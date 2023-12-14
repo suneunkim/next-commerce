@@ -2,11 +2,16 @@ import React from "react";
 
 interface TagBoxProps {
   tags: string[];
+  detail?: boolean;
 }
 
-const TagBox = ({ tags = [] }: TagBoxProps) => {
+const TagBox = ({ tags = [], detail }: TagBoxProps) => {
   return (
-    <div className="absolute top-1 right-0 text-right">
+    <div
+      className={`
+    ${detail ? "flex gap-1" : "absolute top-1 right-0 text-right"}
+    `}
+    >
       {tags.map((tag, i) => (
         <span
           className={`
@@ -19,6 +24,7 @@ const TagBox = ({ tags = [] }: TagBoxProps) => {
         ${tag === "개별배송" ? "bg-black" : ""}
         ${tag === "자체개발" ? "bg-green-600" : ""}
         ${tag === "위글위글협업" ? "bg-blue-600" : ""}
+        ${tag === "동원협업" ? "bg-blue-600" : ""}
         `}
           key={i}
         >
