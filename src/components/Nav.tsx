@@ -3,6 +3,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import { searchOpenState } from "./Recoil";
 import Link from "next/link";
+import SearchModal from "./SearchModal";
 
 const Nav = () => {
   const [searchOpen, setSearchOpen] = useRecoilState(searchOpenState);
@@ -45,6 +46,7 @@ const Nav = () => {
           문의사항 010-9918-4429
         </div>
       </nav>
+      {searchOpen && <SearchModal setSearchOpen={setSearchOpen} />}
     </div>
   );
 };

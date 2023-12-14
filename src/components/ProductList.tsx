@@ -1,10 +1,6 @@
 import axios from "axios";
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import ProductPagination from "./ProductPagination";
-import SearchModal from "./SearchModal";
-import { useRecoilState } from "recoil";
-import { searchOpenState } from "./Recoil";
 import ProductBox from "./ProductBox";
 
 export interface IProductList {
@@ -21,7 +17,6 @@ const ProductList = () => {
   const [products, setProducts] = useState<IProductList[]>([]);
   const categories = ["전체상품", "위생", "미용", "간식", "리빙", "놀이"];
   const [selectedCategory, setSelectedCategory] = useState("전체상품");
-  const [searchOpen, setSearchOpen] = useRecoilState(searchOpenState);
 
   const perPage = 6;
   const [activePage, setActivePage] = useState(1);
@@ -95,7 +90,6 @@ const ProductList = () => {
           perPage={perPage}
         />
       </div>
-      {searchOpen && <SearchModal setSearchOpen={setSearchOpen} />}
     </div>
   );
 };
