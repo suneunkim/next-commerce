@@ -2,6 +2,7 @@ import React from "react";
 import EventBanner from "@/components/EventBanner";
 import ProductList from "@/components/ProductList";
 import Coupon from "@/components/Coupon";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Coupon />
       <EventBanner />
       <ProductList />
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,13 @@
 // recoil.js
 import { atom, selector } from "recoil";
 
+// 상품 선택 옵션
+export const seletedOptionsState = atom({
+  key: "seletedOptionsState",
+  default: [],
+});
+
+// 카운트 다운을 위해서 만들어 본 것들
 export const searchOpenState = atom({
   key: "searchOpenState",
   default: false,

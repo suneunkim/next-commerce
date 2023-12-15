@@ -19,6 +19,7 @@ const DetailProductInfo = ({ product }: DetailProductInfoProps) => {
       <div className="grid grid-cols-3 cursor-pointer">
         {infoType.map((info, i) => (
           <div
+            key={i}
             className={`
                     px-2 py-1 rounded-lg text-center text-sm
                     ${info === productInfo ? "bg-gray-200/70 " : ""}
