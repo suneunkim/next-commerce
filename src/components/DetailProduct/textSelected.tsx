@@ -22,32 +22,39 @@ const SeletedInfo = ({ product }: DetailProductInfoProps) => {
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedList, setSelectedList] = useRecoilState(seletedOptionsState);
 
+  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
+
   // selectedList에 선택한 옵션 추가하기 선택한 옵션 리스트 보여주기
   const handleSelectChange = (e: any) => {
     const newValue = e.target.value;
     setSelectedValue(newValue);
     setSelectedList((prev) => {
-      const selectedOption = options.find(
-        (option) => option.value === newValue
-      );
-      if (selectedOption) {
-        return [...prev, { ...selectedOption, quantity: 1 }];
+      if (!prev.includes(newValue)) {
+        return [...prev, newValue];
       }
       return prev;
     });
   };
   // 선택한 옵션 리스트에서 삭제하기
   const removeSelectedItem = (seletedOption: string) => {
-    setSelectedList((prev) =>
-      prev.filter((item) => item.value !== seletedOption)
-    );
+    setSelectedList((prev) => prev.filter((item) => item !== seletedOption));
+    setQuantities((prev) => {
+      const { [seletedOption]: removedQuantity, ...rest } = prev;
+      return prev;
+    });
   };
 
   // 총합 구하기
   const calculateTotalAmount = () => {
     return selectedList.reduce((acc, selectedOption) => {
-      const totalAmout = selectedOption.quantity * selectedOption.price;
-      return acc + totalAmout;
+      const seleted = options.find((option) => option.value === selectedOption);
+
+      if (seleted) {
+        const quantity = quantities[seleted.value] || 1;
+        const totalAmout = quantity * seleted.price;
+        return acc + totalAmout;
+      }
+      return acc;
     }, 0);
   };
 
@@ -65,10 +72,11 @@ const SeletedInfo = ({ product }: DetailProductInfoProps) => {
             className="w-full border text-sm py-2"
             name="selectedOption"
             onChange={handleSelectChange}
-            value={selectedValue}
           >
+            <option disabled selected hidden>
+              {`- [필수] 옵션을 선택해주세요 -`}
+            </option>
             <option disabled>옵션</option>
-
             {options.map((option) => (
               <option value={option.value} key={option.value}>
                 {option.label}
@@ -86,11 +94,12 @@ const SeletedInfo = ({ product }: DetailProductInfoProps) => {
           <ul>
             {selectedList.map((selectedOption, index) => {
               const selected = options.find(
-                (option) => option.value === selectedOption.value
+                (option) => option.value === selectedOption
               );
               if (selected) {
-                const quantity = selectedOption.quantity || 1;
+                const quantity = quantities[selected.value] || 1;
                 const tatalAmout = quantity * selected.price;
+                console.log(selected, quantity);
 
                 return (
                   <li
@@ -105,12 +114,12 @@ const SeletedInfo = ({ product }: DetailProductInfoProps) => {
                         <QuantityButton
                           selected={selected}
                           quantity={quantity}
-                          setSelectedList={setSelectedList}
+                          setQuantities={setQuantities}
                         />
                       </div>
 
                       <button
-                        onClick={() => removeSelectedItem(selectedOption.value)}
+                        onClick={() => removeSelectedItem(selectedOption)}
                         className="border w-8 ml-4 aspect-square flex items-center justify-center"
                       >
                         X

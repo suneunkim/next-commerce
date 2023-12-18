@@ -27,7 +27,7 @@ const DetailImage = ({ imageUrl }: DetailImageProps) => {
         loop={true}
       >
         {imageUrl?.map((image, i) => (
-          <SwiperSlide>
+          <SwiperSlide key={i}>
             <img key={i} src={image} alt="상세이미지" />
           </SwiperSlide>
         ))}

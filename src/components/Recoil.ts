@@ -2,7 +2,9 @@
 import { atom, selector } from "recoil";
 
 // 상품 선택 옵션
-export const seletedOptionsState = atom({
+export const seletedOptionsState = atom<
+  { value: string; quantity: number; price: number }[]
+>({
   key: "seletedOptionsState",
   default: [],
 });

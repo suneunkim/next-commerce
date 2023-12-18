@@ -2,7 +2,7 @@ import React from "react";
 
 interface QuantityButtonProps {
   quantity: number;
-  setQuantities: any;
+  setSelectedList: any;
   selected: {
     value: string;
     label: string;
@@ -12,14 +12,19 @@ interface QuantityButtonProps {
 
 const QuantityButton = ({
   quantity,
-  setQuantities,
+  setSelectedList,
   selected,
 }: QuantityButtonProps) => {
   const handleQuantityChange = (optionValue: string, quantity: number) => {
-    setQuantities((prevQuantities: any) => ({
-      ...prevQuantities,
-      [optionValue]: quantity,
-    }));
+    setSelectedList((prevSelectedList: any) => {
+      const updatedList = prevSelectedList.map((item: any) => {
+        if (item.value === optionValue) {
+          return { ...item, quantity };
+        }
+        return item;
+      });
+      return updatedList;
+    });
   };
 
   return (
