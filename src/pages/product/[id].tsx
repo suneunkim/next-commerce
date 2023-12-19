@@ -1,10 +1,12 @@
 import DetailImage from "@/components/DetailProduct/DetailImage";
 import DetailProductInfo from "@/components/DetailProduct/DetailProductInfo";
 import SeletedInfo from "@/components/DetailProduct/SeletedInfo";
+import { seletedOptionsState } from "@/components/Recoil";
 import TagBox from "@/components/TagBox";
-import axios, { all } from "axios";
+import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
 export interface IProductDetail {
   id: string;
@@ -29,15 +31,7 @@ const DetailProduct = () => {
     exchange: false,
   });
 
-  const toggleInfo = (type: keyof typeof bottomInfo) => {
-    setBottomInfo((prevState) => {
-      return {
-        ...prevState,
-        [type]: !prevState[type],
-      };
-    });
-  };
-
+  // 상세 상품 정보 가져오기
   const [product, setProduct] = useState<IProductDetail>();
   useEffect(() => {
     const fetchData = async () => {
@@ -50,6 +44,29 @@ const DetailProduct = () => {
     };
     fetchData();
   }, []);
+
+  const toggleInfo = (type: keyof typeof bottomInfo) => {
+    setBottomInfo((prevState) => {
+      return {
+        ...prevState,
+        [type]: !prevState[type],
+      };
+    });
+  };
+  // 선택한 옵션 정보 담기
+  const [selectedList, setSelectedList] = useRecoilState(seletedOptionsState);
+
+  // 장바구니 버튼
+  const handleClickCart = () => {
+    const existingCartData = localStorage.getItem("cartData");
+    const existingData = existingCartData ? JSON.parse(existingCartData) : {};
+    const cartData = {
+      ...existingData,
+      storedList: selectedList,
+    };
+    localStorage.setItem("cartData", JSON.stringify(cartData));
+    router.push("/cart");
+  };
 
   if (product) {
     return (
@@ -67,10 +84,14 @@ const DetailProduct = () => {
             {/* 조건부 설명 */}
             <DetailProductInfo product={product} />
             {/* 가격과 수량 선택 */}
-            <SeletedInfo product={product} />
+            <SeletedInfo
+              product={product}
+              selectedList={selectedList}
+              setSelectedList={setSelectedList}
+            />
             <div className="flex justify-between my-5 cursor-pointer">
               <button
-                onClick={() => router.push("/cart")}
+                onClick={handleClickCart}
                 className="font-semibold border border-black p-5 w-full"
               >
                 ADD TO CART

@@ -1,4 +1,4 @@
-import { useCalculator } from "@/hooks/\buseCalculator";
+import { useCalculator } from "@/hooks/useCalculator";
 
 const Countdown = () => {
   const targetDate = new Date("2023-12-31T00:00:00.000");

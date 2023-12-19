@@ -1,11 +1,20 @@
 import { IProductDetail } from "@/pages/product/[id]";
-import React, { useState } from "react";
-import { useRecoilState } from "recoil";
-import { seletedOptionsState } from "../Recoil";
+import React, { useEffect, useState } from "react";
 import QuantityButton from "./QuantityButton";
+import { SetterOrUpdater } from "recoil";
+
+interface ListProps {
+  value: string;
+  quantity: number;
+  price: number;
+  label: string;
+  imageUrl: string;
+}
 
 interface DetailProductInfoProps {
   product: IProductDetail;
+  selectedList: ListProps[];
+  setSelectedList: SetterOrUpdater<ListProps[]>;
 }
 
 const options = [
@@ -18,27 +27,43 @@ const options = [
   },
 ];
 
-const SeletedInfo = ({ product }: DetailProductInfoProps) => {
+const SeletedInfo = ({
+  product,
+  selectedList,
+  setSelectedList,
+}: DetailProductInfoProps) => {
+  // selete 태그 tartget.value 확인용
   const [selectedValue, setSelectedValue] = useState("");
-  const [selectedList, setSelectedList] = useRecoilState(seletedOptionsState);
+
+  useEffect(() => {
+    console.log(selectedList);
+  }, [selectedList]);
 
   // selectedList에 선택한 옵션 추가하기 선택한 옵션 리스트 보여주기
   const handleSelectChange = (e: any) => {
     const newValue = e.target.value;
     setSelectedValue(newValue);
-    setSelectedList((prev) => {
+    setSelectedList((prev: ListProps[]) => {
       const selectedOption = options.find(
         (option) => option.value === newValue
       );
       if (selectedOption) {
-        return [...prev, { ...selectedOption, quantity: 1 }];
+        return [
+          ...prev,
+          {
+            ...selectedOption,
+            quantity: 1,
+            label: selectedOption.label,
+            imageUrl: product.imageUrl[0],
+          },
+        ];
       }
       return prev;
     });
   };
   // 선택한 옵션 리스트에서 삭제하기
   const removeSelectedItem = (seletedOption: string) => {
-    setSelectedList((prev) =>
+    setSelectedList((prev: ListProps[]) =>
       prev.filter((item) => item.value !== seletedOption)
     );
   };
@@ -67,8 +92,8 @@ const SeletedInfo = ({ product }: DetailProductInfoProps) => {
             onChange={handleSelectChange}
             value={selectedValue}
           >
+            <option value="">필수! 옵션을 선택해주세요</option>
             <option disabled>옵션</option>
-
             {options.map((option) => (
               <option value={option.value} key={option.value}>
                 {option.label}

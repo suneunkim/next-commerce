@@ -1,12 +1,24 @@
 // recoil.js
 import { atom, selector } from "recoil";
 
+const initialCartData =
+  typeof window !== "undefined" && localStorage.getItem("cartData");
+const initialList = initialCartData
+  ? JSON.parse(initialCartData).storedList
+  : [];
+
 // 상품 선택 옵션
 export const seletedOptionsState = atom<
-  { value: string; quantity: number; price: number }[]
+  {
+    value: string;
+    quantity: number;
+    price: number;
+    label: string;
+    imageUrl: string;
+  }[]
 >({
   key: "seletedOptionsState",
-  default: [],
+  default: initialList,
 });
 
 // 카운트 다운을 위해서 만들어 본 것들
