@@ -9,7 +9,7 @@ interface PaginationProps {
 }
 
 const ProductPagination = ({
-  data,
+  data = [],
   onPageChange,
   perPage,
 }: PaginationProps) => {

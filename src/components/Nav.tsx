@@ -9,7 +9,7 @@ const Nav = () => {
   const [searchOpen, setSearchOpen] = useRecoilState(searchOpenState);
 
   return (
-    <div className="w-full fixed z-10 top-0 min-w-[1000px]">
+    <div className="w-full fixed z-50 min-w-[1000px]">
       <nav className="p-4 h-14 bg-white flex justify-between items-center">
         <Link href="/">
           <Image
@@ -23,7 +23,9 @@ const Nav = () => {
           <ul className="flex space-x-7 text-blue-900 font-semibold">
             <li>login</li>
             <li>join</li>
-            <li className="cursor-pointer">cart</li>
+            <Link href="/cart">
+              <li className="cursor-pointer">cart</li>
+            </Link>
             <li className="text-orange-600">membership</li>
             <li className="cursor-pointer" onClick={() => setSearchOpen(true)}>
               search

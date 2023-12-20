@@ -13,25 +13,18 @@ export interface IProductList {
   tag?: string[];
 }
 
-const ProductList = () => {
-  const [products, setProducts] = useState<IProductList[]>([]);
+interface ProductListProps {
+  initialProducts: IProductList[];
+}
+
+const ProductList = ({ initialProducts }: ProductListProps) => {
+  const [products, setProducts] = useState<IProductList[]>(initialProducts);
+
   const categories = ["전체상품", "위생", "미용", "간식", "리빙", "놀이"];
   const [selectedCategory, setSelectedCategory] = useState("전체상품");
 
   const perPage = 6;
   const [activePage, setActivePage] = useState(1);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching product data", error);
-      }
-    };
-    fetchData();
-  }, []);
 
   const handleCategroyClick = (category: string) => {
     setSelectedCategory(category);
@@ -49,10 +42,10 @@ const ProductList = () => {
       : products.filter((p) => p.category === selectedCategory);
 
   // 현재 페이지에 해당하는 상품만 가져오기
-  const currentItems = filteredProducts.slice(
-    (activePage - 1) * perPage,
-    activePage * perPage
-  );
+  const currentItems =
+    filteredProducts && filteredProducts.length
+      ? filteredProducts.slice((activePage - 1) * perPage, activePage * perPage)
+      : [];
 
   const categoryRef = useRef<null | HTMLDivElement>(null);
   const scrollToCategory = () => {
