@@ -11,8 +11,8 @@ interface ProductBoxProps {
 const ProductBox = ({ currentItems }: ProductBoxProps) => {
   return (
     <div className="flex flex-wrap justify-center">
-      {currentItems.map((p) => (
-        <Link href={`/product/${p.id}`}>
+      {currentItems.map((p, i) => (
+        <Link key={i} href={`/product/${p.id}`}>
           <div className="w-[390px] mb-16 mx-3 relative" key={p.id}>
             <Image src={p.imageUrl} alt="product" width={390} height={390} />
             <TagBox tags={p.tag!} />
