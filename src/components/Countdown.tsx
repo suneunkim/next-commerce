@@ -1,13 +1,8 @@
 import { useCalculator } from "@/hooks/useCalculator";
+import { useEffect } from "react";
 
 const Countdown = () => {
-  const targetDate = new Date("2023-12-31T00:00:00.000");
-  const currentDateTime = new Date();
-
-  const remain = useCalculator(
-    () => Math.floor((targetDate.getTime() - currentDateTime.getTime()) / 1000),
-    1000
-  );
+  const remain = useCalculator();
 
   const days = Math.floor(remain / (24 * 60 * 60));
   const hours = Math.floor((remain % (24 * 60 * 60)) / (60 * 60));

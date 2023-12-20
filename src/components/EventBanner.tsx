@@ -27,7 +27,7 @@ const EventBanner = () => {
             height={500}
           />
         </div>
-        <div suppressHydrationWarning className="h-full">
+        <div className="h-full">
           <Countdown />
         </div>
       </div>
@@ -37,7 +37,7 @@ const EventBanner = () => {
             깜짝 쿠폰 찾기 유의 사항
           </h2>
           <p>- 쿠폰은 한 번만 받을 수 있습니다.</p>
-          <p>- 일정 확률로 페이지에 노출됩니다.</p>
+          <p>- 일정 시간마다 페이지에 노출됩니다.</p>
           <p>- 시간 내에 클릭하면 얻을 수 있습니다!</p>
         </div>
       </div>

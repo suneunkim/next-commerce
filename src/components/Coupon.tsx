@@ -14,7 +14,7 @@ const Coupon = () => {
 
   const animateCoupon = async () => {
     setLoading(false);
-    // 1시간에 5초 동안 나타나고 사라지는 효과
+
     if (!loading) {
       await controls.start({ opacity: 1 });
 
@@ -32,8 +32,8 @@ const Coupon = () => {
 
   useEffect(() => {
     animateCoupon();
-    // const intervalId = setInterval(animateCoupon, 300000);
-    // return () => clearInterval(intervalId);
+    const intervalId = setInterval(animateCoupon, 100);
+    return () => clearInterval(intervalId);
   }, [controls]);
 
   return (
