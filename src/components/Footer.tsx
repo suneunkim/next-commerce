@@ -12,9 +12,18 @@ const Footer = () => {
           <li>이벤트 기간은 상시 변동 될 수 있습니다.</li>
         </ul>
       </div>
+      <div className="relative group p-6 border-2 cursor-pointer ">
+        <p className="group-hover:text-gray-400">John Smith</p>
+        <div className="absolute">
+          <p className="group-hover:text-blue-400">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente,
+            voluptatibus.
+          </p>
+        </div>
+      </div>
       <div className="h-[16rem] w-full bg-blue-900 text-white">
         <div className="p-10">
-          하단부까지 스크롤이 용이하도록 만든 공간입니다.
+          하단부까지 스크롤이 용이하도록 만든 Footer 입니다.
         </div>
       </div>
     </div>
