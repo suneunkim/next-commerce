@@ -22,9 +22,7 @@ export default function Home({ initialProducts }: HomeProps) {
 
 export async function getServerSideProps() {
   try {
-    const response = await axios.get(
-      `${process.env.NEXTAUTH_URL}/api/products`
-    );
+    const response = await axios.get(`/api/products`);
     const initialProducts: IProductList[] = response.data;
 
     return {

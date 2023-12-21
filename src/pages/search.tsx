@@ -15,9 +15,7 @@ const Search = () => {
       try {
         if (keyword && typeof keyword === "string") {
           const response = await axios.get(
-            `${
-              process.env.NEXTAUTH_URL
-            }/api/search?keyword=${encodeURIComponent(keyword)}`
+            `/api/search?keyword=${encodeURIComponent(keyword)}`
           );
           setSearchResults(response.data);
         }
