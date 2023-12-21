@@ -13,9 +13,12 @@ const Search = () => {
 
     const fetchDate = async () => {
       try {
+        const apiUrl =
+          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
+
         if (keyword && typeof keyword === "string") {
           const response = await axios.get(
-            `/api/search?keyword=${encodeURIComponent(keyword)}`
+            `${apiUrl}/search?keyword=${encodeURIComponent(keyword)}`
           );
           setSearchResults(response.data);
           console.log(searchResults);
