@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
-const search = () => {
+const Search = () => {
   const router = useRouter();
   const [searchResults, setSearchResults] = useState<IProductList[]>([]);
 
@@ -25,7 +25,7 @@ const search = () => {
       }
     };
     fetchDate();
-  }, [router.query]);
+  }, [router.query, setSearchResults]);
 
   return (
     <div className="pt-[120px] w-[1300px] mx-auto">
@@ -35,4 +35,4 @@ const search = () => {
   );
 };
 
-export default search;
+export default Search;

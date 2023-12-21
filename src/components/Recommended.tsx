@@ -20,6 +20,7 @@ const Recommended = ({ setSearchValue }: recommendedProps) => {
     <ul className="flex flex-wrap">
       {recommendedSearch.map((recommend) => (
         <li
+          key={recommend}
           onClick={() => setSearchValue(recommend)}
           className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer"
         >

@@ -13,7 +13,7 @@ export interface ICart {
   }[];
 }
 
-const cart = () => {
+const Cart = () => {
   const [cartData, setCartData] = useState<ICart>({
     storedList: [],
   });
@@ -162,4 +162,4 @@ const cart = () => {
   );
 };
 
-export default cart;
+export default Cart;
