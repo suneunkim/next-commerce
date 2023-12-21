@@ -22,9 +22,9 @@ export default function Home({ initialProducts }: HomeProps) {
 
 export async function getServerSideProps() {
   try {
-    const apiUrl =
-      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
-    const response = await axios.get(`${apiUrl}/products`);
+    const response = await axios.get(
+      `${process.env.NEXTAUTH_URL}/api/products`
+    );
     const initialProducts: IProductList[] = response.data;
 
     return {

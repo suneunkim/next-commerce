@@ -36,9 +36,9 @@ const DetailProduct = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
-        const response = await axios.get(`${apiUrl}/products/${productId}`);
+        const response = await axios.get(
+          `${process.env.NEXTAUTH_URL}/api/products/${productId}`
+        );
         setProduct(response.data);
       } catch (error) {
         console.error("Error fetching product detail data", error);

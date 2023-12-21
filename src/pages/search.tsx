@@ -13,22 +13,20 @@ const Search = () => {
 
     const fetchDate = async () => {
       try {
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
-
         if (keyword && typeof keyword === "string") {
           const response = await axios.get(
-            `${apiUrl}/search?keyword=${encodeURIComponent(keyword)}`
+            `${
+              process.env.NEXTAUTH_URL
+            }/api/search?keyword=${encodeURIComponent(keyword)}`
           );
           setSearchResults(response.data);
-          console.log(searchResults);
         }
       } catch (error) {
         console.error("Error fetching search results", error);
       }
     };
     fetchDate();
-  }, [router.query, setSearchResults]);
+  }, [router.query]);
 
   return (
     <div className="pt-[120px] w-[1300px] mx-auto">

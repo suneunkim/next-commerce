@@ -59,7 +59,7 @@ const Cart = () => {
 
   const deliveryTotalAmout = calculateTotalAmount() < 50000;
 
-  if (cartData.storedList.length === 0) {
+  if (cartData.storedList && cartData.storedList.length === 0) {
     return (
       <div className="w-[1300px] pt-[113px] mx-auto h-full text-sm px-10">
         <div className="text-4xl text-center p-28">CART</div>
