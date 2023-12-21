@@ -1,5 +1,5 @@
 import { IProductDetail } from "@/pages/product/[id]";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import QuantityButton from "./QuantityButton";
 import { SetterOrUpdater } from "recoil";
 
@@ -29,15 +29,11 @@ const options = [
 
 const SeletedInfo = ({
   product,
-  selectedList,
+  selectedList = [],
   setSelectedList,
 }: DetailProductInfoProps) => {
   // selete 태그 tartget.value 확인용
   const [selectedValue, setSelectedValue] = useState("");
-
-  useEffect(() => {
-    console.log(selectedList);
-  }, [selectedList]);
 
   // selectedList에 선택한 옵션 추가하기 선택한 옵션 리스트 보여주기
   const handleSelectChange = (e: any) => {

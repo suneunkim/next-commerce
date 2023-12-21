@@ -43,7 +43,7 @@ const DetailProduct = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [productId]);
 
   const toggleInfo = (type: keyof typeof bottomInfo) => {
     setBottomInfo((prevState) => {
