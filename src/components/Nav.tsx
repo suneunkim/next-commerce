@@ -56,7 +56,7 @@ const Nav = () => {
     <>
       {/* 모바일용 Nav */}
       <div className="relative">
-        <div className="sm:hidden h-20 px-4 w-full fixed z-50 flex items-center justify-between bg-white">
+        <div className="sm:hidden h-32 px-4 w-full fixed z-50 flex items-center justify-between bg-white">
           {searchOpen && <SearchModal mobile setSearchOpen={setSearchOpen} />}
           {showMenu && (
             <div className="fixed top-0 left-0 w-screen h-screen bg-black opacity-60" />
@@ -167,19 +167,19 @@ const Nav = () => {
               </div>
             </motion.div>
           )}
-          <RxHamburgerMenu size="24" onClick={() => setShowMenu(true)} />
+          <RxHamburgerMenu size="50" onClick={() => setShowMenu(true)} />
 
           <Link href="/">
             <Image
               src="/logo_pethroom.png"
               alt="pethroom"
-              width={160}
-              height={80}
+              width={300}
+              height={230}
             />
           </Link>
           <div className="flex items-center space-x-3">
-            <IoSearchOutline size="24" onClick={() => setSearchOpen(true)} />
-            <span className="bg-blue-800 w-8 aspect-square rounded-full flex items-center justify-center font-bold text-yellow-300">
+            <IoSearchOutline size="50" onClick={() => setSearchOpen(true)} />
+            <span className="bg-blue-800 w-12 text-xl aspect-square rounded-full flex items-center justify-center font-bold text-yellow-300">
               {selectedList.length}
             </span>
           </div>
