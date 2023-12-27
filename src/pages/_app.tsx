@@ -1,3 +1,4 @@
+import Container from "@/components/Container";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import "@/styles/globals.css";
@@ -9,11 +10,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <RecoilRoot>
-        <Nav />
-        <MantineProvider>
-          <Component {...pageProps} />
-        </MantineProvider>
-        <Footer />
+        <Container>
+          <Nav />
+          <MantineProvider>
+            <Component {...pageProps} />
+          </MantineProvider>
+          <Footer />
+        </Container>
       </RecoilRoot>
     </>
   );

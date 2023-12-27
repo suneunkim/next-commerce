@@ -22,7 +22,7 @@ const Recommended = ({ setSearchValue }: recommendedProps) => {
         <li
           key={recommend}
           onClick={() => setSearchValue(recommend)}
-          className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-xl cursor-pointer"
+          className="bg-yellow-500 px-4 my-2 mx-2 py-2 rounded-xl font-semibold text-sm sm:text-xl cursor-pointer"
         >
           {recommend}
         </li>

@@ -6,7 +6,16 @@ const initialCartData =
 const initialList = initialCartData
   ? JSON.parse(initialCartData).storedList
   : [];
-
+// index의 ProductList와 Nav의 category
+export const seletedCategoryState = atom({
+  key: "seletedCategoryState",
+  default: "ALL",
+});
+// Container에서 display fixed 조건부 사용 중 (mobile Nav 열렸을 때 스크롤 막기)
+export const showMenuState = atom({
+  key: "showMenuState",
+  default: false,
+});
 // 상품 선택 옵션
 export const seletedOptionsState = atom<
   {

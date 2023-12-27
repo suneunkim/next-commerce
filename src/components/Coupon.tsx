@@ -42,9 +42,9 @@ const Coupon = () => {
   return (
     <>
       {!hidden && (
-        <div className="w-full flex justify-center absolute z-30">
+        <div className="h-0 flex justify-center ">
           <motion.div
-            className="w-32 h-32 rounded-full bg-yellow-400 border-none flex flex-col justify-center items-center text-white text-xl font-bold cursor-pointer"
+            className="w-32 h-32 z-30 rounded-full bg-yellow-400 border-none flex flex-col justify-center items-center text-white text-xl font-bold cursor-pointer"
             id="coupon"
             onClick={handleClick}
             animate={controls}

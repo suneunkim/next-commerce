@@ -13,3 +13,8 @@
     50%;
   background-size: cover;
 }
+
+html {
+  width: 100vw;
+  min-width: max-content;
+}

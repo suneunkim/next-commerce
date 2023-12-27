@@ -5,12 +5,15 @@ import Countdown from "./Countdown";
 const EventBanner = () => {
   return (
     <>
-      <div className="pt-[112px]">
+      <div className="pt-[86px] sm:pt-[112px]">
         <div className="relative min-h-[40rem]">
           <Image
             src={`https://pethroom.com/web/event/2023_christmas/origin/main-bg.gif`}
             alt="event_banner"
-            fill
+            sizes="100vw"
+            width={0}
+            height={0}
+            style={{ width: "100%", height: "auto" }}
           />
         </div>
       </div>

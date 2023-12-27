@@ -1,6 +1,7 @@
 import DetailImage from "@/components/DetailProduct/DetailImage";
 import DetailProductInfo from "@/components/DetailProduct/DetailProductInfo";
 import SeletedInfo from "@/components/DetailProduct/SeletedInfo";
+import Footer from "@/components/Footer";
 import { seletedOptionsState } from "@/components/Recoil";
 import TagBox from "@/components/TagBox";
 import axios from "axios";
@@ -70,41 +71,46 @@ const DetailProduct = () => {
 
   if (product) {
     return (
-      <div className="w-[1300px] pt-[113px] mx-auto h-full">
-        <div className="grid grid-cols-[1.5fr,1fr] py-10 gap-10">
-          <div className="">
-            <DetailImage imageUrl={product.imageUrl} />
-          </div>
-          {/* 설명 */}
-          <div className="w-[450px]">
-            <div>
-              <TagBox detail tags={product?.tag!} />
+      <div className="min-w-[1300px] relative mx-auto">
+        {/* 슬라이드 이미지와  상품 옵션 선택*/}
+        <div className="w-[1300px] pt-[113px] mx-auto">
+          <div className="grid grid-cols-[1.5fr,1fr] py-10 gap-10">
+            <div className="">
+              <DetailImage imageUrl={product.imageUrl} />
             </div>
-            <div className="text-3xl font-semibold py-10">{product?.title}</div>
-            {/* 조건부 설명 */}
-            <DetailProductInfo product={product} />
-            {/* 가격과 수량 선택 */}
-            <SeletedInfo
-              product={product}
-              selectedList={selectedList}
-              setSelectedList={setSelectedList}
-            />
-            <div className="flex justify-between my-5 cursor-pointer">
-              <button
-                onClick={handleClickCart}
-                className="font-semibold border border-black p-5 w-full"
-              >
-                ADD TO CART
-              </button>
-              <button className="font-semibold border p-5 w-full bg-blue-950 text-white border-transparent">
-                BUY NOW
-              </button>
+            {/* 설명 */}
+            <div className="w-[450px]">
+              <div>
+                <TagBox detail tags={product?.tag!} />
+              </div>
+              <div className="text-3xl font-semibold py-10">
+                {product?.title}
+              </div>
+              {/* 조건부 설명 */}
+              <DetailProductInfo product={product} />
+              {/* 가격과 수량 선택 */}
+              <SeletedInfo
+                product={product}
+                selectedList={selectedList}
+                setSelectedList={setSelectedList}
+              />
+              <div className="flex justify-between my-5 cursor-pointer">
+                <button
+                  onClick={handleClickCart}
+                  className="font-semibold border border-black p-5 w-full"
+                >
+                  ADD TO CART
+                </button>
+                <button className="font-semibold border p-5 w-full bg-blue-950 text-white border-transparent">
+                  BUY NOW
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        {/* 상세 설명 이미지 */}
-        <div className="w-[1000px] mx-auto">
-          <div className=" m-20 ">
+        {/* 상세 설명 이미지, Footer가 여기에 보이는 문제. 아래 컴포넌트들의 맨 아래로 안감*/}
+        <div className="w-[1000px] mx-auto h-fit">
+          <div className="m-20">
             <img
               src="https://pethroom.com/web/upload/NNEditor/20231120/goat-db.jpg"
               alt="상세이미지"
@@ -116,7 +122,7 @@ const DetailProduct = () => {
           </div>
         </div>
         {/* 하단 추가 설명 */}
-        <section className="px-10">
+        <section className="px-10 h-fit">
           <div>
             <div
               onClick={() => toggleInfo("delivery")}

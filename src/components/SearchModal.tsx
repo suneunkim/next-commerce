@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Recommended from "./Recommended";
 import { useRouter } from "next/router";
 interface modalProps {
   setSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  mobile?: boolean;
 }
-const SearchModal = ({ setSearchOpen }: modalProps) => {
+const SearchModal = ({ setSearchOpen, mobile }: modalProps) => {
   const [searchValue, setSearchValue] = useState("");
   const handleChange = (e: any) => {
     setSearchValue(e.target.value);
@@ -20,17 +21,34 @@ const SearchModal = ({ setSearchOpen }: modalProps) => {
   };
 
   return (
-    <div className="z-20 absolute">
-      <div className=" fixed mt-[112px] inset-0">
+    <article className="z-50 absolute block">
+      <div
+        className={`
+      fixed mt-[112px] inset-0
+      ${mobile && "mt-[86px]"}
+      `}
+      >
         <div id="search_background" className="absolute inset-0">
-          <div className="relative w-[1000px] h-[800px] flex flex-col items-center mx-auto border-2 border-white">
+          <div
+            className={`
+          relative sm:w-[1000px] sm:h-[800px] flex flex-col items-center mx-auto border-2 border-white
+          ${mobile && "w-[90%] h-[80%] mt-10"}`}
+          >
             <button
               onClick={() => setSearchOpen(false)}
-              className="text-white font-medium text-5xl absolute top-[130px] right-[90px]"
+              className={`
+              text-white font-medium text-5xl absolute top-[130px] right-[90px]
+              ${mobile && "top-10 right-10"}
+              `}
             >
               X
             </button>
-            <div className=" text-white w-[800px] absolute left-[50%] top-[50%] translate-y-[-50%] translate-x-[-50%]">
+            <div
+              className={`
+            text-white w-[800px] absolute left-[50%] top-[50%] translate-y-[-50%] translate-x-[-50%]
+            ${mobile && "w-[70%] top-[35%]"}
+            `}
+            >
               <input
                 value={searchValue}
                 onChange={handleChange}
@@ -57,13 +75,13 @@ const SearchModal = ({ setSearchOpen }: modalProps) => {
                 </svg>
               </button>
             </div>
-            <div className="absolute w-[800px] left-[50%] top-[63%] translate-y-[-50%] translate-x-[-50%]">
+            <div className="absolute w-[75%] sm:w-[800px] left-[50%] top-[63%] translate-y-[-50%] translate-x-[-50%]">
               <Recommended setSearchValue={setSearchValue} />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

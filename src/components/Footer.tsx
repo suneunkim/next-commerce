@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="w-full">
       <div className="p-10">
         <h3 className="font-semibold text-lg mb-3">사이트 안내</h3>
         <ul className="space-y-2">
