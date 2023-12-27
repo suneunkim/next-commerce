@@ -10,7 +10,7 @@ interface ProductBoxProps {
 
 const ProductBox = ({ currentItems }: ProductBoxProps) => {
   return (
-    <div className="grid grid-cols-2 place-items-center sm:flex flex-nowrap justify-center">
+    <div className="grid grid-cols-2 place-items-center sm:flex flex-wrap justify-center">
       {currentItems.map((p, i) => (
         <Link key={i} href={`/product/${p.id}`}>
           <div
