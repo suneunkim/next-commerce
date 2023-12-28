@@ -13,7 +13,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import NavList from "./NavList";
-import { Variants, motion, AnimatePresence } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 
 interface ShowMenuState {
   inside: boolean;

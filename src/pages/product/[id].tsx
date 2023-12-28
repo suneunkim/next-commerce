@@ -1,7 +1,6 @@
 import DetailImage from "@/components/DetailProduct/DetailImage";
 import DetailProductInfo from "@/components/DetailProduct/DetailProductInfo";
 import SeletedInfo from "@/components/DetailProduct/SeletedInfo";
-import Footer from "@/components/Footer";
 import { seletedOptionsState } from "@/components/Recoil";
 import TagBox from "@/components/TagBox";
 import axios from "axios";
@@ -31,6 +30,7 @@ const DetailProduct = () => {
     delivery: false,
     exchange: false,
   });
+  const [loading, setLoading] = useState(true);
 
   // 상세 상품 정보 가져오기
   const [product, setProduct] = useState<IProductDetail>();
@@ -41,6 +41,8 @@ const DetailProduct = () => {
         setProduct(response.data);
       } catch (error) {
         console.error("Error fetching product detail data", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -69,6 +71,11 @@ const DetailProduct = () => {
     router.push("/cart");
   };
 
+  if (loading) {
+    return (
+      <div className="text-3xl text-gray-400 text-center p-56">Loading...</div>
+    );
+  }
   if (product) {
     return (
       <div className="min-w-[1300px] relative mx-auto">
